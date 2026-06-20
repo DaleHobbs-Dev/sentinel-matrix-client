@@ -1,0 +1,7 @@
+{
+  "compilerOptions": {
+    "paths": {
+      "@/*": ["archived-next-client/src/*"]
+    }
+  }
+}
