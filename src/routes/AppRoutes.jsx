@@ -1,5 +1,5 @@
 import { Route, Routes } from "react-router-dom"
-import { SampleLandingPage } from "../pages/LandingPageTest"
+import { Dashboard } from "../pages/Dashboard"
 // import { Login } from "../pages/Login"
 // import { Register } from "../pages/Register"
 // import { Dashboard } from "../pages/Dashboard"
@@ -13,7 +13,7 @@ import { SampleLandingPage } from "../pages/LandingPageTest"
 export const ApplicationViews = () => {
   return (
     <Routes>
-      <Route path="*" element={<SampleLandingPage />} />
+      <Route path="*" element={<Dashboard />} />
       {/* <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
 
