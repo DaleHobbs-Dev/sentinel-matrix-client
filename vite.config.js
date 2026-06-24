@@ -9,6 +9,7 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url))
 export default defineConfig({
   plugins: [react(), tailwindcss()],
   resolve: {
+    // Add an alias for the src directory to make imports cleaner and easier to read
     alias: {
       '@': path.resolve(__dirname, './src'),
     },
