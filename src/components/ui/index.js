@@ -1,4 +1,5 @@
-export { default as Button } from './Button';
+export { Button } from './Button';
+export { AuthCard } from './AuthCard';
 export { Input } from './Input';
 export { Label } from './Label';
 export { FormField } from './FormField';
@@ -16,6 +17,7 @@ export { Container } from './Container';
 export { Sidebar } from '../layout/Sidebar';
 export { Footer } from '../layout/Footer';
 export { Layout } from '../layout/Layout';
+export { LoadingPage } from './LoadingPage';
 export { Topbar } from '../layout/Topbar';
 export { Textarea } from './Textarea';
 export { Spinner } from './Spinner';

@@ -1,10 +1,9 @@
 import { useState } from "react"
 import { Link, useNavigate } from "react-router-dom"
-import { API_BASE_URL, TOKEN_KEY } from "@/services"
-import { Card, FormField, Input, Button, Alert } from "@/components/ui"
+import { TOKEN_KEY, postJSON } from "@/services"
+import { AuthCard, FormField, Input, Button, Alert } from "../components/ui"
+import { useUser } from "../contexts/userContext"
 
-// This is an array of objects, where each object represents a password requirement. 
-// The test function takes the password as input and returns true if the requirement is met, false otherwise.
 const PASSWORD_REQUIREMENTS = [
     { label: "At least 8 characters", test: (p) => p.length >= 8 },
     { label: "Not entirely numeric", test: (p) => !/^\d+$/.test(p) },
@@ -23,6 +22,7 @@ export const Register = () => {
     const [error, setError] = useState(null)
     const [backendErrors, setBackendErrors] = useState([])
     const navigate = useNavigate()
+    const { setUser } = useUser()
 
     const hasTypedPassword = password.length > 0
     const allRequirementsMet = PASSWORD_REQUIREMENTS.every(req => req.test(password))
@@ -33,21 +33,17 @@ export const Register = () => {
         if (!allRequirementsMet || !passwordsMatch) return
         setError(null)
         setBackendErrors([])
-        fetch(`${API_BASE_URL}/register`, {
-            method: "POST",
-            body: JSON.stringify({
-                username: email,
-                password,
-                first_name: firstName,
-                last_name: lastName
-            }),
-            headers: { "Content-Type": "application/json" }
+        postJSON("register", {
+            email: email,
+            password,
+            first_name: firstName,
+            last_name: lastName
         })
-            .then(res => res.json())
             .then(authInfo => {
                 if (authInfo && authInfo.token) {
                     localStorage.setItem(TOKEN_KEY, JSON.stringify(authInfo))
-                    navigate("/")
+                    setUser(authInfo.user)
+                    navigate("/", { replace: true })
                 } else if (authInfo && authInfo.password) {
                     setBackendErrors(authInfo.password)
                 } else {
@@ -58,7 +54,7 @@ export const Register = () => {
     }
 
     return (
-        <Card
+        <AuthCard
             subtitle="Create your account"
             footer={
                 <Link className="underline text-primary-800 hover:text-primary-700" to="/login">
@@ -155,6 +151,6 @@ export const Register = () => {
                     Register
                 </Button>
             </form>
-        </Card>
+        </AuthCard>
     )
 }
