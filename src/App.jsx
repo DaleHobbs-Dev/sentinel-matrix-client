@@ -3,9 +3,9 @@ import { ApplicationViews } from "./routes/AppRoutes.jsx";
 
 function App() {
   return (
-    <Routes>
-      <Route path="/*" element={<ApplicationViews />} />
-    </Routes>
+      <Routes>
+        <Route path="/*" element={<ApplicationViews />} />
+      </Routes>
   );
 }
 
