@@ -1,5 +1,5 @@
 import { Route, Routes } from "react-router-dom"
-import { Login, Register, Dashboard } from "@/pages"
+import { Login, Register, Dashboard, Courses, NewCourse } from "@/pages"
 // import { Courses } from "../pages/Courses"
 // import { CourseDetail } from "../pages/CourseDetail"
 // import { Students } from "../pages/Students"
@@ -14,6 +14,9 @@ export const ApplicationViews = () => {
       <Route path="/register" element={<Register />} />
       <Route element={<Authorized />}>
         <Route path="/" element={<Dashboard />} />
+        <Route path="/dashboard" element={<Dashboard />} />
+        <Route path="/courses" element={<Courses />} />
+        <Route path="/courses/new" element={<NewCourse />} />
         {/* <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/courses" element={<Courses />} />
         <Route path="/courses/:courseId" element={<CourseDetail />} />
