@@ -23,6 +23,12 @@ export { Textarea } from './Textarea';
 export { Spinner } from './Spinner';
 export { DeleteConfirmationModal } from './DeleteConfirmationModal';
 export { SidebarLink } from './SidebarLink';
+
+// exports for courses components
+export { CourseList } from '../courses/CourseList';
+export { CoursesHeader } from '../courses/CoursesHeader';
+export { EmptyCoursesView } from '../courses/EmptyCoursesState';
+
 // export { DarkModeToggle } from './DarkModeToggle';
 // export { Tooltip } from './Tooltip';
 // export { Pagination } from './Pagination';
