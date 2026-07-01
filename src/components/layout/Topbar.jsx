@@ -1,8 +1,23 @@
-import { Button, Spinner } from "@/components/ui";
+import { Button, Spinner } from "@/components";
 import { useUser } from "@/contexts/userContext";
+import { matchPath, useLocation } from "react-router-dom";
+
+const topbarTitles = [
+  { path: "/courses/new", title: "Create a New Course" },
+  { path: "/courses/courselisteditor", title: "Manage Course Status" },
+  { path: "/courses/:courseId/edit", title: "Edit Course" },
+  { path: "/courses/:courseId", title: "Course Details" },
+  { path: "/courses", title: "Courses" },
+  { path: "/dashboard", title: "Instructor Dashboard" },
+  { path: "/", title: "Instructor Dashboard" },
+];
 
 export const Topbar = () => {
   const { user } = useUser();
+  const { pathname } = useLocation();
+  const title = topbarTitles.find(route =>
+    matchPath({ path: route.path, end: true }, pathname)
+  )?.title ?? "Sentinel Matrix";
 
   if (!user) {
     return (
@@ -15,7 +30,7 @@ export const Topbar = () => {
       >
         <div>
           <h2 className="text-lg font-semibold">
-            Instructor Dashboard
+            {title}
           </h2>
 
           <p className="text-sm text-slate-500">
@@ -52,7 +67,7 @@ export const Topbar = () => {
     >
       <div>
         <h2 className="text-lg font-semibold">
-          Instructor Dashboard
+          {title}
         </h2>
 
         <p className="text-sm text-slate-500">

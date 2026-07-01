@@ -1,7 +1,7 @@
 import { useState } from "react"
 import { Link, useNavigate } from "react-router-dom"
 import { TOKEN_KEY, postJSON } from "@/services"
-import { AuthCard, FormField, Input, Button, Alert } from "../components/ui"
+import { AuthCard, FormField, Input, Button, Alert } from "@/components"
 import { useUser } from "../contexts/userContext"
 
 const PASSWORD_REQUIREMENTS = [

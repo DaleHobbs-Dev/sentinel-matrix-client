@@ -1,8 +1,9 @@
-import { Button } from "@/components/ui"
+import { Button } from "@/components"
+import { CoursePageHeader } from "@/features"
 
-export const CoursesHeader = ({ onCreate, onEdit }) => (
+export const CourseDetailsHeader = ({ onCreate, onEdit }) => (
     <header className="flex flex-wrap items-center justify-between gap-4 mb-6">
-        <h1 className="text-2xl font-bold">Current Courses</h1>
+        <CoursePageHeader title="Course Details" />
         <div className="flex gap-3">
             <Button type="button" onClick={onCreate}>+ Add a Course</Button>
             <Button type="button" variant="outline" onClick={onEdit}>

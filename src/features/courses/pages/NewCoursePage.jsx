@@ -1,19 +1,18 @@
 import { useNavigate } from "react-router-dom"
-import { Layout } from "@/components/ui"
-import { NewCourseForm } from "@/components/courses/NewCourseForm"
+import { CoursePageHeader, NewCourseForm } from "@/features"
 
-export const NewCourse = () => {
+export const NewCoursePage = () => {
     const navigate = useNavigate()
 
     return (
-        <Layout>
             <div className="mx-auto max-w-2xl">
-                <h1 className="mb-6 text-2xl font-bold">Create a New Course</h1>
+                <div className="mb-6">
+                    <CoursePageHeader title="Create a New Course" />
+                </div>
                 <NewCourseForm
                     onCreated={() => navigate("/courses")}
                     onCancel={() => navigate("/courses")}
                 />
             </div>
-        </Layout>
     )
 }

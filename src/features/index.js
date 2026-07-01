@@ -1,0 +1,20 @@
+// Barrel file for features
+
+// Course Components
+export { CourseDashboardHeader } from "@/features/courses/components/CourseDashboardHeader"
+export { CoursePageHeader } from "@/features/courses/components/CoursePageHeader"
+export { CourseList } from "@/features/courses/components/CourseList"
+export { CourseCard } from "@/features/courses/components/CourseCard"
+export { CourseForm } from "@/features/courses/components/CourseForm"
+export { CourseModal } from "@/features/courses/components/CourseModal"
+export { EditCourseForm } from "@/features/courses/components/EditCourseForm"
+export { NewCourseForm } from "@/features/courses/components/NewCourseForm"
+export { CourseDetailsHeader } from "@/features/courses/components/CourseDetailsHeader"
+
+// Course Pages
+export { CourseDashboard } from "@/features/courses/pages/CourseDashboard"
+export { ActiveCourseListEditorPage } from "@/features/courses/pages/ActiveCourseListEditorPage"
+export { NewCoursePage } from "@/features/courses/pages/NewCoursePage"
+export { EditCoursePage } from "@/features/courses/pages/EditCoursePage"
+export { CourseDetailsPage } from "@/features/courses/pages/CourseDetailsPage"
+export { EditCourseRosterPage } from "@/features/courses/pages/EditCourseRosterPage"

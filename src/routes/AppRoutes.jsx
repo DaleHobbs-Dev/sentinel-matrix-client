@@ -1,11 +1,8 @@
 import { Route, Routes } from "react-router-dom"
-import { Login, Register, Dashboard, Courses, NewCourse } from "@/pages"
-// import { Courses } from "../pages/Courses"
-// import { CourseDetail } from "../pages/CourseDetail"
-// import { Students } from "../pages/Students"
-// import { StudentDetail } from "../pages/StudentDetail"
-// import { Analytics } from "../pages/Analytics"
+import { Login, Register, Dashboard, Courses} from "@/pages"
 import { Authorized } from "./Authorized"
+import { CourseDashboard, CourseDetailsPage, NewCoursePage, EditCoursePage, ActiveCourseListEditorPage } from "@/features"
+import { Layout } from "@/components"
 
 export const ApplicationViews = () => {
   return (
@@ -13,16 +10,27 @@ export const ApplicationViews = () => {
       <Route path="/login" element={<Login />} />
       <Route path="/register" element={<Register />} />
       <Route element={<Authorized />}>
-        <Route path="/" element={<Dashboard />} />
-        <Route path="/dashboard" element={<Dashboard />} />
-        <Route path="/courses" element={<Courses />} />
-        <Route path="/courses/new" element={<NewCourse />} />
-        {/* <Route path="/dashboard" element={<Dashboard />} />
-        <Route path="/courses" element={<Courses />} />
-        <Route path="/courses/:courseId" element={<CourseDetail />} />
-        <Route path="/students" element={<Students />} />
-        <Route path="/students/:studentId" element={<StudentDetail />} />
-        <Route path="/analytics" element={<Analytics />} /> */}
+        <Route element={<Layout />}>
+          {/* Dashboard routes */}
+          <Route index element={<Dashboard />} />
+          <Route path="dashboard" element={<Dashboard />} />
+
+          {/* Courses routes */}
+          <Route path="courses" element={<Courses />}>
+            <Route index element={<CourseDashboard />} />
+            <Route path=":courseId" element={<CourseDetailsPage />} />
+            <Route path="new" element={<NewCoursePage />} />
+            <Route path=":courseId/edit" element={<EditCoursePage />} />
+            <Route path="courselisteditor" element={<ActiveCourseListEditorPage />} />
+            {/* <Route path=":courseId/roster" element={<EditCourseRosterPage />} /> */}
+            {/* <Route path="/dashboard" element={<Dashboard />} />
+            <Route path="/courses" element={<Courses />} />
+            <Route path="/courses/:courseId" element={<CourseDetail />} />
+            <Route path="/students" element={<Students />} />
+            <Route path="/students/:studentId" element={<StudentDetail />} />
+            <Route path="/analytics" element={<Analytics />} /> */}
+          </Route>
+        </Route>
       </Route>
     </Routes>
   )

@@ -1,6 +1,6 @@
 import { Navigate, Outlet } from "react-router-dom"
 import { useUser } from "@/contexts/userContext"
-import { LoadingPage } from "@/components/ui"
+import { LoadingPage } from "@/components"
 
 export const Authorized = () => {
   const token = localStorage.getItem("sentinel_token")

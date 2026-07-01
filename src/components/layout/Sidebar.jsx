@@ -1,4 +1,4 @@
-import { SidebarLink, Button, Spinner } from "@/components/ui"
+import { SidebarLink, Button, Spinner } from "@/components"
 import { useUser } from "@/contexts/userContext"
 import { useNavigate } from "react-router-dom"
 import logo from "@/assets/logo.png"
