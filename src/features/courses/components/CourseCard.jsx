@@ -1,4 +1,6 @@
-// Takes a course object as a prop and displays its title, description, instructor, and number of students in a card format.
+// Takes a course object as a prop and displays its name, description, instructor, and number of students in a card format.
+import { Link } from "react-router-dom"
+
 export const CourseCard = ({ course, user }) => {
     return (
         <div className="border rounded-lg p-4 shadow-md hover:shadow-lg transition-shadow duration-300">
@@ -13,6 +15,12 @@ export const CourseCard = ({ course, user }) => {
                 {user && <span className="text-sm text-gray-500">Instructor: {user.first_name} {user.last_name}</span>}
                 {/* <span className="text-sm text-gray-500">Students: {course.students_count}</span> */}
             </div>
+            <Link
+                to={`/courses/${course.id}`}
+                className="mt-4 inline-block font-medium text-primary hover:text-primary-dark"
+            >
+                View Course Details
+            </Link>
         </div>
     );
 }

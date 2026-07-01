@@ -1,4 +1,4 @@
-import { Modal, ModalBody, ModalHeader } from "@/components/ui"
+import { Modal, ModalBody, ModalHeader } from "@/components"
 
 export const CourseModal = ({ isOpen, title, onClose, children }) => (
     <Modal isOpen={isOpen} onClose={onClose}>

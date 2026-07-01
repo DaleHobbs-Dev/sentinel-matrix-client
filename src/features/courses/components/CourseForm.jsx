@@ -1,5 +1,5 @@
 import { useState } from "react"
-import { Alert, Button, FormField, Input, Textarea } from "@/components/ui"
+import { Alert, Button, FormField, Input, Textarea } from "@/components"
 
 const emptyCourse = {
     course_name: "",

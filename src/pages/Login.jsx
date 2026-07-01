@@ -7,7 +7,7 @@ import {
   Input,
   Button,
   Alert,
-} from "@/components/ui";
+} from "@/components";
 import { useUser } from "../contexts/userContext";
 
 export const Login = () => {
