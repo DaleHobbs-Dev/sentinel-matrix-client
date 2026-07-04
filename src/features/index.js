@@ -10,6 +10,7 @@ export { CourseModal } from "@/features/courses/components/CourseModal"
 export { EditCourseForm } from "@/features/courses/components/EditCourseForm"
 export { NewCourseForm } from "@/features/courses/components/NewCourseForm"
 export { CourseDetailsHeader } from "@/features/courses/components/CourseDetailsHeader"
+export { CourseStatusListItem } from "@/features/courses/components/CourseStatusListItem"
 
 // Course Pages
 export { CourseDashboard } from "@/features/courses/pages/CourseDashboard"

@@ -29,6 +29,9 @@ export { Spinner } from './ui/Spinner';
 export { DeleteConfirmationModal } from './ui/DeleteConfirmationModal';
 export { SidebarLink } from './ui/SidebarLink';
 export { IconWrapper } from './ui/IconWrapper';
+export { Text } from './ui/Text';
+export { Stack } from './ui/Stack';
+export { FormPage } from './ui/FormPage';
 
 // Future UI Components (commented out for now)
 // export { DarkModeToggle } from './DarkModeToggle';

@@ -1,4 +1,5 @@
 import { Card, CardContent } from "./Card"
+import { Text } from "./Text"
 
 export function AuthCard({ subtitle, children, footer }) {
     return (
@@ -7,7 +8,7 @@ export function AuthCard({ subtitle, children, footer }) {
                 <div className="text-center mb-8">
                     <h1 className="text-4xl font-bold text-primary-800">Sentinel Matrix</h1>
                     {subtitle && (
-                        <p className="text-gray-500 mt-2">{subtitle}</p>
+                        <Text variant="description" className="mt-2">{subtitle}</Text>
                     )}
                 </div>
                 <Card>

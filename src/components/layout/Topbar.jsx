@@ -1,4 +1,4 @@
-import { Button, Spinner } from "@/components";
+import { Button, Spinner, Text } from "@/components";
 import { useUser } from "@/contexts/userContext";
 import { matchPath, useLocation } from "react-router-dom";
 
@@ -33,9 +33,9 @@ export const Topbar = () => {
             {title}
           </h2>
 
-          <p className="text-sm text-slate-500">
+          <Text variant="subtle">
             Monitor student risk indicators
-          </p>
+          </Text>
         </div>
 
         <div className="flex items-center gap-3">
@@ -70,9 +70,9 @@ export const Topbar = () => {
           {title}
         </h2>
 
-        <p className="text-sm text-slate-500">
+        <Text variant="subtle">
           Monitor student risk indicators
-        </p>
+        </Text>
       </div>
 
       <div className="flex items-center gap-3">

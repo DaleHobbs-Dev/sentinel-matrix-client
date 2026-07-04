@@ -1,4 +1,5 @@
 import { H1 } from "./Heading.jsx";
+import { Text } from "./Text.jsx";
 
 export function PageHeader({
   title,
@@ -18,7 +19,11 @@ export function PageHeader({
       >
         <div className={center ? "mx-auto" : ""}>
           <H1 id="page-header-title">{title}</H1>
-          {description && <p className="mt-2 text-adaptive-muted">{description}</p>}
+          {description && (
+            <Text variant="description" className="mt-2">
+              {description}
+            </Text>
+          )}
         </div>
 
         {!center && actions && <div className="flex gap-3">{actions}</div>}

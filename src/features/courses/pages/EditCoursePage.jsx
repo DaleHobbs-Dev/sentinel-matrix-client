@@ -1,18 +1,16 @@
 import { useNavigate } from "react-router-dom"
-import { CoursePageHeader, EditCourseForm } from "@/features"
+import { EditCourseForm } from "@/features"
+import { FormPage } from "@/components"
 
 export const EditCoursePage = () => {
     const navigate = useNavigate()
 
     return (
-            <div className="mx-auto max-w-2xl">
-                <div className="mb-6">
-                    <CoursePageHeader title="Edit Course" />
-                </div>
+            <FormPage title="Edit Course">
                 <EditCourseForm
                     onUpdated={() => navigate("/courses")}
                     onCancel={() => navigate("/courses")}
                 />
-            </div>
+            </FormPage>
     )
 }

@@ -1,4 +1,5 @@
-import { CourseDashboardHeader, CourseList, CoursePageHeader } from "@/features";
+import { CourseDashboardHeader, CourseList } from "@/features";
+import { PageHeader, Stack, Text } from "@/components";
 import { useState, useEffect } from "react";
 import { getActiveCourses } from "@/services";
 
@@ -23,25 +24,25 @@ export const CourseDashboard = () => {
 
     if (loading) {
         return (
-            <div className="flex flex-col items-center justify-center gap-4 p-8 bg-slate-100 rounded-lg shadow-md">
-                <CoursePageHeader title="Loading Courses..." />
-            </div>
+            <Stack className="items-center justify-center rounded-lg bg-surface-muted p-8 shadow-md">
+                <PageHeader title="Loading Courses..." />
+            </Stack>
         );
     }
 
     if (courses.length === 0) {
         return (
-            <div className="flex flex-col items-center justify-center gap-4 p-8 bg-slate-100 rounded-lg shadow-md">
+            <Stack className="items-center justify-center rounded-lg bg-surface-muted p-8 shadow-md">
                 <CourseDashboardHeader />
-                <p className="text-lg text-slate-600">You currently have no active courses. Choose an option above to add a new course or edit the active status of an existing course.</p>
-            </div>
+                <Text variant="muted" className="text-lg">You currently have no active courses. Choose an option above to add a new course or edit the active status of an existing course.</Text>
+            </Stack>
         );
     }
 
     return (
-        <div className="flex flex-col gap-4 p-4">
+        <Stack className="p-4">
             <CourseDashboardHeader />
             <CourseList courses={courses} />
-        </div>
+        </Stack>
     );
 }

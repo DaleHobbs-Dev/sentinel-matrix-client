@@ -4,6 +4,7 @@ import {
   ModalBody,
   ModalFooter,
   Button,
+  Text,
 } from "@/components";
 import { ExclamationTriangleIcon } from "@heroicons/react/24/outline";
 
@@ -30,18 +31,18 @@ export function DeleteConfirmationModal({
       </ModalHeader>
 
       <ModalBody>
-        <p className="text-gray-700 mb-2">
+        <Text className="mb-2">
           {message || "Are you sure you want to delete this item?"}
-        </p>
+        </Text>
         {itemName && (
-          <p className="text-gray-900 font-semibold bg-gray-100 p-3 rounded border-l-4 border-red-500">
+          <Text className="rounded border-l-4 border-danger bg-surface-muted p-3 font-semibold">
             "{itemName}"
-          </p>
+          </Text>
         )}
-        <p className="text-gray-600 text-sm mt-3">
+        <Text variant="subtle" className="mt-3">
           This will hide it from the system. This action can be reversed by an
           administrator.
-        </p>
+        </Text>
       </ModalBody>
 
       <ModalFooter className="flex justify-end gap-3">

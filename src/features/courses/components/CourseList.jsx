@@ -1,8 +1,9 @@
 import { CourseCard } from "./CourseCard"
+import { Text } from "@/components"
 
 export const CourseList = ({ courses = [], user, onCourseClick }) => {
     if (courses.length === 0) {
-        return <p className="text-gray-600">You do not have any active courses yet.</p>
+        return <Text variant="muted">You do not have any active courses yet.</Text>
     }
 
     return (
