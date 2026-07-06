@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react"
 import { getCourses, updateCourse } from "@/services"
-import { Alert, PageHeader, Stack, Text } from "@/components"
+import { Alert, PageHeader, Stack, Text, Button, ButtonGroup } from "@/components"
 import { CourseStatusListItem } from "@/features"
 
 export const ActiveCourseListEditorPage = () => {
@@ -74,6 +74,11 @@ export const ActiveCourseListEditorPage = () => {
                             onToggle={toggleActive}
                         />
                     ))}
+                <ButtonGroup>               
+                    <Button className="m-auto" type="button" variant="primary" to="/courses">
+                    Back to Course Dashboard
+                    </Button>
+                </ButtonGroup>
                 </Stack>
             )}
         </Stack>
