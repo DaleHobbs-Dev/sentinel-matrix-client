@@ -1,7 +1,10 @@
 import { CourseCard } from "./CourseCard"
+import { useNavigate } from "react-router-dom"
 import { Text } from "@/components"
 
 export const CourseList = ({ courses = [], user, onCourseClick }) => {
+    const navigate = useNavigate()
+
     if (courses.length === 0) {
         return <Text variant="muted">You do not have any active courses yet.</Text>
     }
@@ -11,8 +14,8 @@ export const CourseList = ({ courses = [], user, onCourseClick }) => {
             {courses.map(course => (
                 <div
                     key={course.id}
-                    onClick={() => onCourseClick?.(course)}
-                    className={onCourseClick ? "cursor-pointer" : ""}
+                    onClick={() => onCourseClick ? onCourseClick(course) : navigate(`/courses/${course.id}`)}
+                    className={"cursor-pointer rounded-lg bg-surface-muted p-4 shadow-md transition-transform hover:scale-[1.02]"}
                 >
                     <CourseCard course={course} user={user} />
                 </div>

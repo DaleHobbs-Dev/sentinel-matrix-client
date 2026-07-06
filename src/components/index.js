@@ -32,6 +32,7 @@ export { IconWrapper } from './ui/IconWrapper';
 export { Text } from './ui/Text';
 export { Stack } from './ui/Stack';
 export { FormPage } from './ui/FormPage';
+export { ButtonGroup } from './ui/ButtonGroup';
 
 // Future UI Components (commented out for now)
 // export { DarkModeToggle } from './DarkModeToggle';

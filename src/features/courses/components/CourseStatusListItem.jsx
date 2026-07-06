@@ -5,7 +5,7 @@ export function CourseStatusListItem({
   course,
   isSaving,
   disabled,
-  onToggle,
+  onToggle
 }) {
   const status = course.is_active ? "Active" : "Inactive";
 

@@ -1,19 +1,17 @@
-import { Button, PageHeader } from "@/components"
-import { useNavigate } from "react-router-dom"
+import { Button, PageHeader, ButtonGroup } from "@/components"
 
 export const CourseDashboardHeader = () => {
-    const navigate = useNavigate()
 
     return (
         <PageHeader
             title="Current Courses"
             actions={
-              <>
-                <Button type="button" onClick={() => navigate("/courses/new")}>+ Add a Course</Button>
-                <Button type="button" variant="outline" onClick={() => navigate("/courses/courselisteditor")}>
+              <ButtonGroup>
+                <Button type="button" to="/courses/new">+ Add a Course</Button>
+                <Button type="button" variant="primary" to="/courses/courselisteditor">
                     Edit Course List
                 </Button>
-              </>
+              </ButtonGroup>
             }
         />
     )
