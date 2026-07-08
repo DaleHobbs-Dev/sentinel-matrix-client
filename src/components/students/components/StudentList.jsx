@@ -13,6 +13,7 @@ export const StudentList = ({
   students = [],
   columns = studentDirectoryColumns,
   emptyMessage = "No students found.",
+  onRowClick,
 }) => {
   if (students.length === 0) {
     return (
@@ -34,7 +35,22 @@ export const StudentList = ({
         </TableHeader>
         <TableBody>
           {students.map((student) => (
-            <TableRow key={student.id || student.student_id}>
+            <TableRow
+              key={student.id || student.student_id}
+              onClick={onRowClick ? () => onRowClick(student) : undefined}
+              className={onRowClick ? "cursor-pointer" : ""}
+              tabIndex={onRowClick ? 0 : undefined}
+              onKeyDown={
+                onRowClick
+                  ? (event) => {
+                      if (event.key === "Enter" || event.key === " ") {
+                        event.preventDefault();
+                        onRowClick(student);
+                      }
+                    }
+                  : undefined
+              }
+            >
               {columns.map((column) => (
                 <TableCell key={column.key}>
                   {column.render(student)}
