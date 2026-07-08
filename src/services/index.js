@@ -7,7 +7,7 @@ export { API_BASE_URL, TOKEN_KEY, fetchJSON, postJSON, patchJSON, deleteJSON } f
 export { getUserProfile } from './userService.js'
 
 // Course services
-export { getCourses, getActiveCourses, getCourseById, createCourse, updateCourse, deleteCourse } from './courseService.js'
+export { getCourses, getActiveCourses, getCourseById, getCourseDashboard, createCourse, updateCourse, deleteCourse } from './courseService.js'
 
 // Student services
 export { getStudents, getStudentByStudentId } from './studentService.js'

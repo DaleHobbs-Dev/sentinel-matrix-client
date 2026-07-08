@@ -1,4 +1,4 @@
-import { StudentRiskBadge } from "../components/StudentRiskBadge";
+import { StudentRiskBadge } from "@/components";
 import {
   formatAcademicStanding,
   getCurrentCourseCount,

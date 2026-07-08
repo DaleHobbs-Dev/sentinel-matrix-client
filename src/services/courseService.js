@@ -6,6 +6,8 @@ export const getActiveCourses = () => fetchJSON("courses?is_active=true")
 
 export const getCourseById = (courseId) => fetchJSON(`courses/${courseId}`)
 
+export const getCourseDashboard = (courseId) => fetchJSON(`courses/${courseId}/dashboard`)
+
 export const createCourse = (courseData) => postJSON("courses", courseData)
 
 export const updateCourse = (courseId, courseData) => patchJSON(`courses/${courseId}`, courseData)

@@ -33,6 +33,7 @@ export { Text } from './ui/Text';
 export { Stack } from './ui/Stack';
 export { FormPage } from './ui/FormPage';
 export { ButtonGroup } from './ui/ButtonGroup';
+export { MetricCard } from './ui/MetricCard';
 
 // Future UI Components (commented out for now)
 // export { DarkModeToggle } from './DarkModeToggle';
@@ -66,15 +67,23 @@ export { CourseModal } from "./courses/components/CourseModal"
 export { EditCourseForm } from "./courses/components/EditCourseForm"
 export { NewCourseForm } from "./courses/components/NewCourseForm"
 export { DeleteCourseConfirmationModal } from "./courses/components/DeleteCourseConfirmationModal"
-export { CourseDetailsHeader } from "./courses/components/CourseDetailsHeader"
+export { CourseHomeHeader } from "./courses/components/CourseHomeHeader.jsx"
 export { CourseStatusListItem } from "./courses/components/CourseStatusListItem"
+export { CourseRosterTable } from "./courses/components/CourseRosterTable"
+export { EditCourseRosterForm } from "./courses/components/EditCourseRosterForm"
+export { EditAssessmentForm } from "./courses/components/EditAssessmentForm"
+export { NewAssessmentForm } from "./courses/components/NewAssessmentForm"
+export { CourseMetricsGrid } from "./courses/components/CourseMetricsGrid"
+export { getCourseMetricCards } from "./courses/utils/courseMetrics"
+export { courseRosterColumns } from "./courses/utils/courseRosterColumns.jsx"
 
 // Course Pages
 export { CourseDashboard } from "./courses/pages/CourseDashboard"
 export { ActiveCourseListEditorPage } from "./courses/pages/ActiveCourseListEditorPage"
 export { CourseFormPage } from "./courses/pages/CourseFormPage"
-export { CourseDetailsPage } from "./courses/pages/CourseDetailsPage"
-export { EditCourseRosterPage } from "./courses/pages/EditCourseRosterPage"
+export { CourseHomePage } from "./courses/pages/CourseHomePage.jsx"
+export { CourseRosterPage } from "./courses/pages/CourseRosterPage"
+export { AssessmentFormPage } from "./courses/pages/AssessmentFormPage"
 
 // Student Components
 export { StudentList } from "./students/components/StudentList"
