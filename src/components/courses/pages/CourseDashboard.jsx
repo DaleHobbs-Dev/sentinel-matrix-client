@@ -1,5 +1,4 @@
-import { CourseDashboardHeader, CourseList } from "@/features";
-import { PageHeader, Stack, Text } from "@/components";
+import { PageHeader, Stack, Text, CourseDashboardHeader, CourseList  } from "@/components";
 import { useState, useEffect } from "react";
 import { getActiveCourses } from "@/services";
 
