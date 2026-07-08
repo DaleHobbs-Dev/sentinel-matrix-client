@@ -8,3 +8,6 @@ export { getUserProfile } from './userService.js'
 
 // Course services
 export { getCourses, getActiveCourses, getCourseById, createCourse, updateCourse, deleteCourse } from './courseService.js'
+
+// Student services
+export { getStudents, getStudentByStudentId } from './studentService.js'

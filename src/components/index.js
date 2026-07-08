@@ -56,3 +56,40 @@ export { ButtonGroup } from './ui/ButtonGroup';
 // export { Notification } from './Notification';
 // export { ToastContainer, toast } from './Toast';
 // export { Wizard, WizardStep } from './Wizard';
+
+// Course Components
+export { CourseDashboardHeader } from "./courses/components/CourseDashboardHeader"
+export { CourseList } from "./courses/components/CourseList"
+export { CourseCard } from "./courses/components/CourseCard"
+export { CourseForm } from "./courses/components/CourseForm"
+export { CourseModal } from "./courses/components/CourseModal"
+export { EditCourseForm } from "./courses/components/EditCourseForm"
+export { NewCourseForm } from "./courses/components/NewCourseForm"
+export { DeleteCourseConfirmationModal } from "./courses/components/DeleteCourseConfirmationModal"
+export { CourseDetailsHeader } from "./courses/components/CourseDetailsHeader"
+export { CourseStatusListItem } from "./courses/components/CourseStatusListItem"
+
+// Course Pages
+export { CourseDashboard } from "./courses/pages/CourseDashboard"
+export { ActiveCourseListEditorPage } from "./courses/pages/ActiveCourseListEditorPage"
+export { CourseFormPage } from "./courses/pages/CourseFormPage"
+export { CourseDetailsPage } from "./courses/pages/CourseDetailsPage"
+export { EditCourseRosterPage } from "./courses/pages/EditCourseRosterPage"
+
+// Student Components
+export { StudentList } from "./students/components/StudentList"
+export { StudentSearchBar } from "./students/components/StudentSearchBar"
+export { StudentRiskBadge } from "./students/components/StudentRiskBadge"
+export { StudentDirectoryHeader } from "./students/components/StudentDirectoryHeader"
+
+// Student Pages
+export { StudentDirectory } from "./students/pages/StudentDirectory"
+
+// Student Utilities
+export { studentDirectoryColumns } from "./students/utils/studentTableColumns.jsx"
+export {
+  formatAcademicStanding,
+  getCurrentCourseCount,
+  getStudentFullName,
+  studentMatchesSearch,
+} from "./students/utils/studentFormatters"

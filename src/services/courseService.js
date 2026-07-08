@@ -1,4 +1,5 @@
 import { fetchJSON, postJSON, patchJSON, deleteJSON } from "@/services"
+
 export const getCourses = () => fetchJSON("courses")
 
 export const getActiveCourses = () => fetchJSON("courses?is_active=true")

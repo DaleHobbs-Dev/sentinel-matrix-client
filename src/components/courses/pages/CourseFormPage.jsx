@@ -1,8 +1,6 @@
 import { useEffect, useState } from "react"
 import { useNavigate, useParams } from "react-router-dom"
-import { Alert, FormPage, Text } from "@/components"
-import { EditCourseForm } from "@/features/courses/components/EditCourseForm"
-import { NewCourseForm } from "@/features/courses/components/NewCourseForm"
+import { Alert, FormPage, Text, NewCourseForm, EditCourseForm } from "@/components"
 import { getCourseById } from "@/services"
 
 export const CourseFormPage = () => {

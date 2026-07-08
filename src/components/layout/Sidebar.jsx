@@ -44,7 +44,6 @@ export const Sidebar = () => {
         <SidebarLink to={"/dashboard"}>Dashboard</SidebarLink>
         <SidebarLink to={"/courses"}>Courses</SidebarLink>
         <SidebarLink to={"/students"}>Students</SidebarLink>
-        <SidebarLink to={"/analytics"}>Analytics</SidebarLink>
       </nav>
 
       <div className="mt-auto border-t border-slate-200 p-3">

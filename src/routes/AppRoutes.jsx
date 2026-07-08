@@ -1,8 +1,7 @@
 import { Route, Routes } from "react-router-dom"
-import { Login, Register, Dashboard, Courses} from "@/pages"
+import { Login, Register, Dashboard, Courses, Students } from "@/pages"
 import { Authorized } from "./Authorized"
-import { CourseDashboard, CourseDetailsPage, CourseFormPage, ActiveCourseListEditorPage } from "@/features"
-import { Layout } from "@/components"
+import { Layout, CourseDashboard, CourseDetailsPage, CourseFormPage, ActiveCourseListEditorPage, StudentDirectory } from "@/components"
 
 export const ApplicationViews = () => {
   return (
@@ -29,6 +28,12 @@ export const ApplicationViews = () => {
             <Route path="/students" element={<Students />} />
             <Route path="/students/:studentId" element={<StudentDetail />} />
             <Route path="/analytics" element={<Analytics />} /> */}
+          </Route>
+
+          {/* Students routes */}
+          <Route path="students" element={<Students />}>
+            <Route index element={<StudentDirectory />} />
+            {/* <Route path=":studentId" element={<StudentDetail />} /> */}
           </Route>
         </Route>
       </Route>

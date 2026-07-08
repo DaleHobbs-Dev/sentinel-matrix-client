@@ -1,4 +1,4 @@
-import { CourseDetailsHeader } from "@/features"
+import { CourseDetailsHeader } from "@/components"
 
 export const CourseDetailsPage = () => {
   return (

@@ -1,6 +1,6 @@
 import { Outlet } from "react-router-dom";
 
-export const Courses = () => {
+export const Students = () => {
 
   return (
     <section>

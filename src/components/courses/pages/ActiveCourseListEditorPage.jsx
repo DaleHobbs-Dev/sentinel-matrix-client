@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react"
 import { getCourses, updateCourse } from "@/services"
-import { Alert, PageHeader, Stack, Text, Button, ButtonGroup } from "@/components"
-import { CourseStatusListItem } from "@/features"
+import { Alert, PageHeader, Stack, Text, Button, ButtonGroup, CourseStatusListItem } from "@/components"
 
 export const ActiveCourseListEditorPage = () => {
     const [courses, setCourses] = useState([])
