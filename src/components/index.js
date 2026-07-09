@@ -35,6 +35,13 @@ export { FormPage } from './ui/FormPage';
 export { ButtonGroup } from './ui/ButtonGroup';
 export { MetricCard } from './ui/MetricCard';
 
+// Dashboard Components
+export { DashboardMetricsGrid } from "./dashboard/components/DashboardMetricsGrid"
+export { RiskStudentsTable } from "./dashboard/components/RiskStudentsTable"
+
+// Dashboard Pages
+export { InstructorDashboardPage } from "./dashboard/pages/InstructorDashboardPage"
+
 // Future UI Components (commented out for now)
 // export { DarkModeToggle } from './DarkModeToggle';
 // export { Tooltip } from './Tooltip';
