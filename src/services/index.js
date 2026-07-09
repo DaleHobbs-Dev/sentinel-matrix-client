@@ -23,3 +23,6 @@ export { getEnrollmentByCourseId, createEnrollment, deleteEnrollment, getEnrollm
 
 // Student-Assessment services
 export { getStudentAssessmentsByEnrollmentID, createStudentAssessment, updateStudentAssessment, deleteStudentAssessment } from './studentAssessmentService.js'
+
+// Dashboard services
+export { getDashboard } from './dashboardService.js'
