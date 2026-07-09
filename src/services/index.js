@@ -10,10 +10,16 @@ export { getUserProfile } from './userService.js'
 export { getCourses, getActiveCourses, getCourseById, getCourseDashboard, createCourse, updateCourse, deleteCourse } from './courseService.js'
 
 // Student services
-export { getStudents, getStudentByStudentId } from './studentService.js'
+export { getStudents, getStudentById, getStudentByStudentId } from './studentService.js'
 
 // Assessment-Types services
 export { getAssessmentTypes, getCourseAssessmentTypes, updateCourseAssessmentType, updateCourseAssessmentTypes } from './assessmentTypeService.js'
 
 // Assessment services
 export { getAssessments, getAssessmentById, getAssessmentByCourseId, createAssessment, updateAssessment, deleteAssessment } from './assessmentService.js'
+
+// Enrollment services
+export { getEnrollmentByCourseId, createEnrollment, deleteEnrollment, getEnrollmentByCourseIdAndStudentId } from './enrollmentService.js'
+
+// Student-Assessment services
+export { getStudentAssessmentsByEnrollmentID, createStudentAssessment, updateStudentAssessment, deleteStudentAssessment } from './studentAssessmentService.js'

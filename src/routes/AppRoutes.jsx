@@ -1,7 +1,7 @@
 import { Route, Routes } from "react-router-dom"
 import { Login, Register, Dashboard, Courses, Students } from "@/pages"
 import { Authorized } from "./Authorized"
-import { Layout, CourseDashboard, CourseHomePage, CourseFormPage, ActiveCourseListEditorPage, StudentDirectory, CourseRosterPage, AssessmentFormPage, CourseAssessmentsPage, AssessmentScoresPage } from "@/components"
+import { Layout, CourseDashboard, CourseHomePage, CourseFormPage, ActiveCourseListEditorPage, StudentDirectory, StudentDirectoryDetails, CourseRosterPage, StudentCourseDetails, AssessmentFormPage, CourseAssessmentsPage, AssessmentScoresPage} from "@/components"
 
 export const ApplicationViews = () => {
   return (
@@ -22,11 +22,11 @@ export const ApplicationViews = () => {
             <Route path=":courseId/edit" element={<CourseFormPage />} />
             <Route path="courselisteditor" element={<ActiveCourseListEditorPage />} />
             <Route path=":courseId/roster" element={<CourseRosterPage />} />
+            <Route path=":courseId/students/:studentId" element={<StudentCourseDetails />} />
             <Route path=":courseId/assessments" element={<CourseAssessmentsPage />} />
             <Route path=":courseId/assessments/new" element={<AssessmentFormPage />} />
             <Route path=":courseId/assessments/:assessmentId/scores" element={<AssessmentScoresPage />} />
             <Route path=":courseId/assessments/:assessmentId/edit" element={<AssessmentFormPage />} />
-            {/* <Route path=":courseId/roster" element={<EditCourseRosterPage />} /> */}
             {/* <Route path="/dashboard" element={<Dashboard />} />
             <Route path="/courses" element={<Courses />} />
             <Route path="/courses/:courseId" element={<CourseDetail />} />
@@ -38,7 +38,7 @@ export const ApplicationViews = () => {
           {/* Students routes */}
           <Route path="students" element={<Students />}>
             <Route index element={<StudentDirectory />} />
-            {/* <Route path=":studentId" element={<StudentDetail />} /> */}
+            <Route path=":studentId" element={<StudentDirectoryDetails />} />
           </Route>
         </Route>
       </Route>
