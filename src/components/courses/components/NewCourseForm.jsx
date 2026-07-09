@@ -1,6 +1,6 @@
 import { useState } from "react"
 import { createCourse } from "@/services"
-import { CourseForm } from "./CourseForm"
+import { CourseForm } from "@/components"
 
 export const NewCourseForm = ({ onCreated, onCancel }) => {
     const [submitting, setSubmitting] = useState(false)

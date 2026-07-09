@@ -1,6 +1,6 @@
+import { Text } from "@/components"
 import { CourseCard } from "./CourseCard"
 import { useNavigate } from "react-router-dom"
-import { Text } from "@/components"
 
 export const CourseList = ({ courses = [], user, onCourseClick }) => {
     const navigate = useNavigate()
