@@ -1,6 +1,4 @@
-import { Button } from "@/components/ui/Button"
-import { ButtonGroup } from "@/components/ui/ButtonGroup"
-import { PageHeader } from "@/components/ui/PageHeader"
+import { Button, PageHeader, ButtonGroup } from "@/components"
 
 export const CourseHomeHeader = ({ course, courseId }) => (
     <PageHeader
@@ -8,11 +6,11 @@ export const CourseHomeHeader = ({ course, courseId }) => (
         description={course?.description}
         actions={
             <ButtonGroup>
-                <Button type="button" to={`/courses/${courseId}/roster`}>
+                <Button type="button" variant="primary" to={`/courses/${courseId}/roster`}>
                     Edit Course Roster
                 </Button>
-                <Button type="button" variant="outline" to={`/courses/${courseId}/assessments/new`}>
-                    Record New Assessment Data
+                <Button type="button" variant="primary" to={`/courses/${courseId}/assessments`}>
+                    Course Assessments
                 </Button>
             </ButtonGroup>
         }

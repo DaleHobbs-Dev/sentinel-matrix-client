@@ -71,8 +71,7 @@ export { CourseHomeHeader } from "./courses/components/CourseHomeHeader.jsx"
 export { CourseStatusListItem } from "./courses/components/CourseStatusListItem"
 export { CourseRosterTable } from "./courses/components/CourseRosterTable"
 export { EditCourseRosterForm } from "./courses/components/EditCourseRosterForm"
-export { EditAssessmentForm } from "./courses/components/EditAssessmentForm"
-export { NewAssessmentForm } from "./courses/components/NewAssessmentForm"
+
 export { CourseMetricsGrid } from "./courses/components/CourseMetricsGrid"
 export { getCourseMetricCards } from "./courses/utils/courseMetrics"
 export { courseRosterColumns } from "./courses/utils/courseRosterColumns.jsx"
@@ -83,7 +82,6 @@ export { ActiveCourseListEditorPage } from "./courses/pages/ActiveCourseListEdit
 export { CourseFormPage } from "./courses/pages/CourseFormPage"
 export { CourseHomePage } from "./courses/pages/CourseHomePage.jsx"
 export { CourseRosterPage } from "./courses/pages/CourseRosterPage"
-export { AssessmentFormPage } from "./courses/pages/AssessmentFormPage"
 
 // Student Components
 export { StudentList } from "./students/components/StudentList"
@@ -102,3 +100,22 @@ export {
   getStudentFullName,
   studentMatchesSearch,
 } from "./students/utils/studentFormatters"
+
+// Assessment Components
+export { AssessmentForm } from "./assessments/components/AssessmentForm"
+export { EditAssessmentForm } from "./assessments/components/EditAssessmentForm"
+export { NewAssessmentForm } from "./assessments/components/NewAssessmentForm"
+export { DeleteAssessmentConfirmationModal } from "./assessments/components/DeleteAssessmentConfirmationModal"
+export { AssessmentPageHeader } from "./assessments/components/AssessmentPageHeader"
+export { AssessmentsList } from "./assessments/components/AssessmentsList"
+export { AssessmentScoresForm } from "./assessments/components/AssessmentScoresForm"
+export { AssessmentTypeFilter } from "./assessments/components/AssessmentTypeFilter"
+export { CourseAssessmentWeightsModal } from "./assessments/components/CourseAssessmentWeightsModal"
+export { StudentAssessmentScoresFields } from "./assessments/components/StudentAssessmentScoresFields"
+
+// Assessment Pages
+export { AssessmentFormPage } from "./assessments/pages/AssessmentFormPage"
+export { CourseAssessmentsPage } from "./assessments/pages/CourseAssessmentsPage"
+export { AssessmentScoresPage } from "./assessments/pages/AssessmentScoresPage"
+
+// Assessment Utilities

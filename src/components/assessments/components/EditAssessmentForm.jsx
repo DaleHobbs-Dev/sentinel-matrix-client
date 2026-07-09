@@ -1,35 +1,45 @@
 import { useState } from "react"
-import { Button, CourseForm, DeleteCourseConfirmationModal } from "@/components"
-import { deleteCourse, updateCourse } from "@/services"
+import { useParams } from "react-router-dom"
+import { Button, AssessmentForm, DeleteAssessmentConfirmationModal} from "@/components"
+import { deleteAssessment, updateAssessment } from "@/services"
 
-export const EditCourseForm = ({ course, onUpdated, onCancel, onDeleted }) => {
+export const EditAssessmentForm = ({
+    assessment,
+    assessmentTypes = [],
+    onUpdated,
+    onCancel,
+    onDeleted,
+}) => {
+    const { courseId, assessmentId } = useParams()
     const [submitting, setSubmitting] = useState(false)
     const [deleteModalOpen, setDeleteModalOpen] = useState(false)
     const [error, setError] = useState(null)
 
-    const handleSubmit = async (courseData) => {
+    const handleSubmit = async (assessmentData) => {
         setSubmitting(true)
         setError(null)
 
         try {
-            const updatedCourse = await updateCourse(course.id, courseData)
-            onUpdated?.(updatedCourse ?? { ...course, ...courseData })
+            const updatedAssessment = await updateAssessment(assessmentId, assessmentData)
+            onUpdated?.(updatedAssessment ?? { ...assessment, ...assessmentData })
         } catch (err) {
-            setError(err.body?.message || err.message)
+            setError(err.body?.detail || err.body?.message || err.message)
         } finally {
             setSubmitting(false)
         }
     }
 
-    if (!course) {
+    if (!assessment) {
         return <p>Loading...</p>
     }
 
     return (
         <>
-            <CourseForm
-                key={course.id}
-                initialValues={course}
+            <AssessmentForm
+                key={assessment.id}
+                initialValues={assessment}
+                courseId={courseId}
+                assessmentTypes={assessmentTypes}
                 onSubmit={handleSubmit}
                 onCancel={onCancel}
                 submitLabel="Save Changes"
@@ -44,16 +54,16 @@ export const EditCourseForm = ({ course, onUpdated, onCancel, onDeleted }) => {
                     onClick={() => setDeleteModalOpen(true)}
                     disabled={submitting}
                 >
-                    Delete Course
+                    Delete Assessment
                 </Button>
             </div>
 
-            <DeleteCourseConfirmationModal
+            <DeleteAssessmentConfirmationModal
                 isOpen={deleteModalOpen}
                 onClose={() => setDeleteModalOpen(false)}
-                deleteCourse={deleteCourse}
-                courseId={course.id}
-                courseName={course.course_name}
+                deleteAssessment={deleteAssessment}
+                assessmentId={assessmentId}
+                assessmentName={assessment.title}
                 onDeleted={onDeleted}
             />
         </>

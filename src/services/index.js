@@ -11,3 +11,9 @@ export { getCourses, getActiveCourses, getCourseById, getCourseDashboard, create
 
 // Student services
 export { getStudents, getStudentByStudentId } from './studentService.js'
+
+// Assessment-Types services
+export { getAssessmentTypes, getCourseAssessmentTypes, updateCourseAssessmentType, updateCourseAssessmentTypes } from './assessmentTypeService.js'
+
+// Assessment services
+export { getAssessments, getAssessmentById, getAssessmentByCourseId, createAssessment, updateAssessment, deleteAssessment } from './assessmentService.js'

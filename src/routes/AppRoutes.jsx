@@ -1,7 +1,7 @@
 import { Route, Routes } from "react-router-dom"
 import { Login, Register, Dashboard, Courses, Students } from "@/pages"
 import { Authorized } from "./Authorized"
-import { Layout, CourseDashboard, CourseHomePage, CourseFormPage, ActiveCourseListEditorPage, StudentDirectory, CourseRosterPage, AssessmentFormPage } from "@/components"
+import { Layout, CourseDashboard, CourseHomePage, CourseFormPage, ActiveCourseListEditorPage, StudentDirectory, CourseRosterPage, AssessmentFormPage, CourseAssessmentsPage, AssessmentScoresPage } from "@/components"
 
 export const ApplicationViews = () => {
   return (
@@ -22,7 +22,10 @@ export const ApplicationViews = () => {
             <Route path=":courseId/edit" element={<CourseFormPage />} />
             <Route path="courselisteditor" element={<ActiveCourseListEditorPage />} />
             <Route path=":courseId/roster" element={<CourseRosterPage />} />
+            <Route path=":courseId/assessments" element={<CourseAssessmentsPage />} />
             <Route path=":courseId/assessments/new" element={<AssessmentFormPage />} />
+            <Route path=":courseId/assessments/:assessmentId/scores" element={<AssessmentScoresPage />} />
+            <Route path=":courseId/assessments/:assessmentId/edit" element={<AssessmentFormPage />} />
             {/* <Route path=":courseId/roster" element={<EditCourseRosterPage />} /> */}
             {/* <Route path="/dashboard" element={<Dashboard />} />
             <Route path="/courses" element={<Courses />} />
