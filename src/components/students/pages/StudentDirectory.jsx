@@ -1,9 +1,11 @@
 import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import { getStudents } from "@/services";
 import { StudentList, StudentDirectoryHeader, Spinner, Stack, Text } from "@/components";
 import { studentMatchesSearch } from "../utils/studentFormatters";
 
 export const StudentDirectory = () => {
+    const navigate = useNavigate();
     const [students, setStudents] = useState([]);
     const [searchTerm, setSearchTerm] = useState("");
     const [isLoading, setIsLoading] = useState(true);
@@ -54,6 +56,7 @@ export const StudentDirectory = () => {
       ) : (
         <StudentList
           students={filteredStudents}
+          onRowClick={(student) => navigate(`/students/${student.id}`)}
           emptyMessage={
             searchTerm
               ? "No students match your search."

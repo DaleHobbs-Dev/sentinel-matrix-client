@@ -1,11 +1,6 @@
 import { useEffect, useState } from "react"
 import { useParams } from "react-router-dom"
-import { CourseHomeHeader } from "../components/CourseHomeHeader"
-import { CourseMetricsGrid } from "../components/CourseMetricsGrid"
-import { CourseRosterTable } from "../components/CourseRosterTable"
-import { Spinner } from "@/components/ui/Spinner"
-import { Stack } from "@/components/ui/Stack"
-import { Text } from "@/components/ui/Text"
+import { CourseHomeHeader, CourseMetricsGrid, CourseRosterTable, Spinner, Stack, Text } from "@/components"
 import { getCourseDashboard } from "@/services"
 
 export const CourseHomePage = () => {

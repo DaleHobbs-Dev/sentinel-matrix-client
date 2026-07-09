@@ -7,7 +7,7 @@ export const CourseHomeHeader = ({ course, courseId }) => (
         actions={
             <ButtonGroup>
                 <Button type="button" variant="primary" to={`/courses/${courseId}/roster`}>
-                    Edit Course Roster
+                    Course Roster
                 </Button>
                 <Button type="button" variant="primary" to={`/courses/${courseId}/assessments`}>
                     Course Assessments

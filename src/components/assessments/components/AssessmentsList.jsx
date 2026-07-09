@@ -1,9 +1,19 @@
-import { Button, ButtonGroup, Table, TableBody, TableCell, TableHead, TableHeader, TableRow, Text } from "@/components"
-import { useNavigate } from "react-router-dom"
+import {
+    Button,
+    ButtonGroup,
+    Table,
+    TableBody,
+    TableCell,
+    TableHead,
+    TableHeader,
+    TableRow,
+    Text,
+} from "@/components";
+import { useNavigate } from "react-router-dom";
 
 const formatDate = (value) => {
     if (!value) {
-        return "N/A"
+        return "N/A";
     }
 
     return new Intl.DateTimeFormat("en-US", {
@@ -12,22 +22,30 @@ const formatDate = (value) => {
         year: "numeric",
         hour: "numeric",
         minute: "2-digit",
-    }).format(new Date(value))
-}
+    }).format(new Date(value));
+};
 
 const formatWholeNumber = (value) => {
     if (value === null || value === undefined || value === "") {
-        return "N/A"
+        return "N/A";
     }
 
-    return Math.round(Number(value)).toString()
-}
+    return Math.round(Number(value)).toString();
+};
 
-export const AssessmentsList = ({ assessments = [], courseId, onDeleteAssessment }) => {
-    const navigate = useNavigate()
+export const AssessmentsList = ({
+    assessments = [],
+    courseId,
+    onDeleteAssessment,
+}) => {
+    const navigate = useNavigate();
 
     if (assessments.length === 0) {
-        return <Text variant="muted">There are no assessments matching this filter.</Text>
+        return (
+            <Text variant="muted">
+                There are no assessments matching this filter.
+            </Text>
+        );
     }
 
     return (
@@ -62,14 +80,22 @@ export const AssessmentsList = ({ assessments = [], courseId, onDeleteAssessment
                                 <Button
                                     type="button"
                                     variant="outline"
-                                    onClick={() => navigate(`/courses/${courseId}/assessments/${assessment.id}/scores`)}
+                                    onClick={() =>
+                                        navigate(
+                                            `/courses/${courseId}/assessments/${assessment.id}/scores`,
+                                        )
+                                    }
                                 >
                                     Record Scores
                                 </Button>
                                 <Button
                                     type="button"
                                     variant="secondary"
-                                    onClick={() => navigate(`/courses/${courseId}/assessments/${assessment.id}/edit`)}
+                                    onClick={() =>
+                                        navigate(
+                                            `/courses/${courseId}/assessments/${assessment.id}/edit`,
+                                        )
+                                    }
                                 >
                                     Edit
                                 </Button>
@@ -86,5 +112,5 @@ export const AssessmentsList = ({ assessments = [], courseId, onDeleteAssessment
                 ))}
             </TableBody>
         </Table>
-    )
-}
+    );
+};

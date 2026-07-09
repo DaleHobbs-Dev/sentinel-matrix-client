@@ -1,6 +1,4 @@
-import { MetricCard } from "@/components/ui/MetricCard"
-import { Grid } from "@/components/ui/Grid"
-import { getCourseMetricCards } from "../utils/courseMetrics"
+import { MetricCard, Grid, getCourseMetricCards } from "@/components"
 
 export const CourseMetricsGrid = ({ metrics }) => {
     const metricCards = getCourseMetricCards(metrics)

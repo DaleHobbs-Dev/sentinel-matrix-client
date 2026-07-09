@@ -70,9 +70,13 @@ export { DeleteCourseConfirmationModal } from "./courses/components/DeleteCourse
 export { CourseHomeHeader } from "./courses/components/CourseHomeHeader.jsx"
 export { CourseStatusListItem } from "./courses/components/CourseStatusListItem"
 export { CourseRosterTable } from "./courses/components/CourseRosterTable"
+export { CourseRosterHeader } from "./courses/components/CourseRosterHeader"
+export { AddStudentsToCourseModal } from "./courses/components/AddStudentsToCourseModal"
+export { DeleteStudentConfirmationModal } from "./courses/components/DeleteStudentConfirmationModal"
 export { EditCourseRosterForm } from "./courses/components/EditCourseRosterForm"
-
 export { CourseMetricsGrid } from "./courses/components/CourseMetricsGrid"
+export { StudentCourseAssessmentsTable } from "./courses/components/StudentCourseAssessmentsTable"
+export { StudentAssessmentScoreModal } from "./courses/components/StudentAssessmentScoreModal"
 export { getCourseMetricCards } from "./courses/utils/courseMetrics"
 export { courseRosterColumns } from "./courses/utils/courseRosterColumns.jsx"
 
@@ -82,15 +86,18 @@ export { ActiveCourseListEditorPage } from "./courses/pages/ActiveCourseListEdit
 export { CourseFormPage } from "./courses/pages/CourseFormPage"
 export { CourseHomePage } from "./courses/pages/CourseHomePage.jsx"
 export { CourseRosterPage } from "./courses/pages/CourseRosterPage"
+export { StudentCourseDetails } from "./courses/pages/StudentCourseDetails"
 
 // Student Components
 export { StudentList } from "./students/components/StudentList"
 export { StudentSearchBar } from "./students/components/StudentSearchBar"
 export { StudentRiskBadge } from "./students/components/StudentRiskBadge"
 export { StudentDirectoryHeader } from "./students/components/StudentDirectoryHeader"
+export { StudentDetailsCard } from "./students/components/StudentDetailsCard"
 
 // Student Pages
 export { StudentDirectory } from "./students/pages/StudentDirectory"
+export { StudentDirectoryDetails } from "./students/pages/StudentDirectoryDetails"
 
 // Student Utilities
 export { studentDirectoryColumns } from "./students/utils/studentTableColumns.jsx"
@@ -112,6 +119,8 @@ export { AssessmentScoresForm } from "./assessments/components/AssessmentScoresF
 export { AssessmentTypeFilter } from "./assessments/components/AssessmentTypeFilter"
 export { CourseAssessmentWeightsModal } from "./assessments/components/CourseAssessmentWeightsModal"
 export { StudentAssessmentScoresFields } from "./assessments/components/StudentAssessmentScoresFields"
+export { AssessmentWeightFieldsCard } from "./assessments/components/AssessmentWeightFieldsCard"
+export { AssessmentWeightTotalsSummary } from "./assessments/components/AssessmentWeightTotalsSummary"
 
 // Assessment Pages
 export { AssessmentFormPage } from "./assessments/pages/AssessmentFormPage"
@@ -119,3 +128,12 @@ export { CourseAssessmentsPage } from "./assessments/pages/CourseAssessmentsPage
 export { AssessmentScoresPage } from "./assessments/pages/AssessmentScoresPage"
 
 // Assessment Utilities
+export {
+  assessmentWeightTotalIsValid,
+  assessmentWeightTotalsAreValid,
+  getAssessmentWeightPayload,
+  getAssessmentWeightTotals,
+  getEditableAssessmentWeightRows,
+  toAssessmentWeightNumber,
+  toEditableAssessmentWeight,
+} from "./assessments/utils/assessmentWeights"
