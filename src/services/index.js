@@ -22,7 +22,7 @@ export { getAssessments, getAssessmentById, getAssessmentByCourseId, createAsses
 export { getEnrollmentByCourseId, createEnrollment, deleteEnrollment, getEnrollmentByCourseIdAndStudentId } from './enrollmentService.js'
 
 // Student-Assessment services
-export { getStudentAssessmentsByEnrollmentID, createStudentAssessment, updateStudentAssessment, deleteStudentAssessment } from './studentAssessmentService.js'
+export { getStudentAssessmentsByEnrollmentID, getStudentAssessmentById, getAssessmentByIdForStudentAssessments, createStudentAssessment, updateStudentAssessment, updateAssessmentForStudentAssessments, deleteStudentAssessment } from './studentAssessmentService.js'
 
 // Dashboard services
 export { getDashboard, getCourseDashboard } from './dashboardService.js'

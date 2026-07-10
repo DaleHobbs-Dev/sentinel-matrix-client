@@ -32,7 +32,10 @@ export const findExistingScore = (student, scoreRecords) => {
             scoreRecord.student?.id ??
             scoreRecord.enrollment?.student?.id
         const recordEnrollmentId =
-            scoreRecord.enrollment_id ?? scoreRecord.enrollment?.id
+            scoreRecord.enrollment_id ??
+            (typeof scoreRecord.enrollment === "number"
+                ? scoreRecord.enrollment
+                : scoreRecord.enrollment?.id)
 
         return (
             recordStudentId === student.id ||
@@ -51,7 +54,9 @@ export const findAssessmentScoreRecord = (scoreRecord, assessmentScoreRecords) =
             assessmentScoreRecord.enrollment?.student?.id
         const recordEnrollmentId =
             assessmentScoreRecord.enrollment_id ??
-            assessmentScoreRecord.enrollment?.id
+            (typeof assessmentScoreRecord.enrollment === "number"
+                ? assessmentScoreRecord.enrollment
+                : assessmentScoreRecord.enrollment?.id)
 
         return (
             recordStudentId === scoreRecord.student_id ||
@@ -83,6 +88,7 @@ export const markBlankPastDueScoresMissing = async ({
     const missingScoreRecords = scoreRecords.filter(
         (scoreRecord) =>
             scoreRecord.enrollment_id &&
+            !scoreRecord.is_missing &&
             (scoreRecord.score === null ||
                 scoreRecord.score === undefined ||
                 scoreRecord.score === ""),

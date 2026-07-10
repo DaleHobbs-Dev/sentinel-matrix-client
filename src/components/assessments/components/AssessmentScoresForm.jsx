@@ -1,10 +1,6 @@
 import { useState } from "react"
-import { Alert, Button, StudentAssessmentScoresFields, markBlankPastDueScoresMissing } from "@/components"
-import {
-    createStudentAssessment,
-    updateAssessment,
-    updateStudentAssessment,
-} from "@/services"
+import { Alert, Button, StudentAssessmentScoresFields } from "@/components"
+import { updateAssessmentForStudentAssessments } from "@/services"
 
 export const AssessmentScoresForm = ({
     assessment,
@@ -13,48 +9,42 @@ export const AssessmentScoresForm = ({
     onCancel,
 }) => {
     const [studentScores, setStudentScores] = useState([])
-    const [markingMissingStudentId, setMarkingMissingStudentId] = useState(null)
     const [submitting, setSubmitting] = useState(false)
     const [error, setError] = useState(null)
 
-    // Function to save a missing student assessment
-    const saveMissingStudentAssessment = async (scoreRecord) => {
-        const studentAssessment = {
+    const getStudentAssessmentPayload = (scoreRecord) => {
+        const payload = {
             enrollment: scoreRecord.enrollment_id,
-            assessment: assessment.id,
-            score: null,
-            is_missing: true,
-            completed_date: null,
+            ...(scoreRecord.is_missing
+                ? { is_missing: true }
+                : {
+                    score:
+                        scoreRecord.score === null ||
+                        scoreRecord.score === undefined
+                            ? ""
+                            : scoreRecord.score,
+                    is_missing: false,
+                }),
         }
 
-        return scoreRecord.student_assessment_id
-            ? updateStudentAssessment(
-                scoreRecord.student_assessment_id,
-                studentAssessment,
-            )
-            : createStudentAssessment(studentAssessment)
+        if (scoreRecord.student_assessment_id) {
+            payload.id = scoreRecord.student_assessment_id
+        }
+
+        return payload
     }
 
-    const handleMarkMissing = async (scoreRecord) => {
+    const handleMarkMissing = (scoreRecord) => {
         if (!scoreRecord.enrollment_id) {
             setError("Unable to mark missing because this student is missing an enrollment record.")
-            return
+            return null
         }
 
-        setMarkingMissingStudentId(scoreRecord.student_id)
         setError(null)
 
-        try {
-            await saveMissingStudentAssessment(scoreRecord)
-        } catch (err) {
-            setError(
-                err.body?.detail ||
-                err.body?.message ||
-                err.message ||
-                "Unable to mark this score as missing.",
-            )
-        } finally {
-            setMarkingMissingStudentId(null)
+        return {
+            ...scoreRecord,
+            is_missing: !scoreRecord.is_missing,
         }
     }
 
@@ -64,18 +54,20 @@ export const AssessmentScoresForm = ({
         setError(null)
 
         try {
-            const updatedAssessment = await updateAssessment(assessment.id, {
-                student_scores: studentScores,
+            const updatedStudentAssessments =
+                await updateAssessmentForStudentAssessments(
+                    assessment.id,
+                    {
+                        student_assessments: studentScores.map(
+                            getStudentAssessmentPayload,
+                        ),
+                    },
+                )
+
+            onSaved?.({
+                ...assessment,
+                student_assessments: updatedStudentAssessments,
             })
-            await markBlankPastDueScoresMissing({
-                assessment: {
-                    ...assessment,
-                    ...updatedAssessment,
-                    due_date: updatedAssessment?.due_date ?? assessment.due_date,
-                },
-                scoreRecords: studentScores,
-            })
-            onSaved?.(updatedAssessment)
         } catch (err) {
             setError(err.body?.detail || err.body?.message || err.message || "Unable to save student scores.")
         } finally {
@@ -94,7 +86,6 @@ export const AssessmentScoresForm = ({
                 maxScore={assessment.max_score}
                 onScoresChange={setStudentScores}
                 onMarkMissing={handleMarkMissing}
-                markingMissingStudentId={markingMissingStudentId}
             />
 
             <div className="flex justify-end gap-3 pt-2">

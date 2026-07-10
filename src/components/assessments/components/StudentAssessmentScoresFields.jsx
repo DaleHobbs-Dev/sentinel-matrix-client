@@ -17,6 +17,15 @@ import {
     getAssessmentScoreRecords,
 } from "../utils/assessmentScoreUtils";
 
+const getInitialScoreValue = (student, existingScore) =>
+    existingScore?.score ?? student.score ?? "";
+
+const getInitialMissingValue = (student, existingScore) =>
+    Boolean(existingScore?.is_missing ?? student.is_missing);
+
+const getInitialStudentAssessmentId = (student, existingScore) =>
+    existingScore?.id ?? student.student_assessment_id;
+
 export const StudentAssessmentScoresFields = ({
     assessment,
     students = [],
@@ -31,10 +40,38 @@ export const StudentAssessmentScoresFields = ({
         return students.reduce((scoresByStudentId, student) => {
             const existingScore = findExistingScore(student, scoreRecords);
 
-            scoresByStudentId[student.id] = existingScore?.score ?? "";
+            scoresByStudentId[student.id] = getInitialScoreValue(
+                student,
+                existingScore,
+            );
             return scoresByStudentId;
         }, {});
     });
+    const [missingByStudentId, setMissingByStudentId] = useState(() => {
+        const scoreRecords = getAssessmentScoreRecords(assessment);
+
+        return students.reduce((missingByStudentId, student) => {
+            const existingScore = findExistingScore(student, scoreRecords);
+
+            missingByStudentId[student.id] = getInitialMissingValue(
+                student,
+                existingScore,
+            );
+            return missingByStudentId;
+        }, {});
+    });
+    const [studentAssessmentIdsByStudentId, setStudentAssessmentIdsByStudentId] =
+        useState(() => {
+            const scoreRecords = getAssessmentScoreRecords(assessment);
+
+            return students.reduce((studentAssessmentIdsByStudentId, student) => {
+                const existingScore = findExistingScore(student, scoreRecords);
+
+                studentAssessmentIdsByStudentId[student.id] =
+                    getInitialStudentAssessmentId(student, existingScore);
+                return studentAssessmentIdsByStudentId;
+            }, {});
+        });
 
     useEffect(() => {
         const existingScoreRecords = getAssessmentScoreRecords(assessment);
@@ -42,7 +79,9 @@ export const StudentAssessmentScoresFields = ({
             student_id: student.id,
             enrollment_id: student.enrollment_id ?? student.enrollment?.id,
             student_assessment_id:
+                studentAssessmentIdsByStudentId[student.id] ??
                 findExistingScore(student, existingScoreRecords)?.id,
+            is_missing: Boolean(missingByStudentId[student.id]),
             score:
                 scoresByStudentId[student.id] === ""
                     ? null
@@ -50,13 +89,55 @@ export const StudentAssessmentScoresFields = ({
         }));
 
         onScoresChange?.(scoreRecords);
-    }, [assessment, onScoresChange, scoresByStudentId, students]);
+    }, [
+        assessment,
+        missingByStudentId,
+        onScoresChange,
+        scoresByStudentId,
+        studentAssessmentIdsByStudentId,
+        students,
+    ]);
 
     const handleScoreChange = (studentId, value) => {
         setScoresByStudentId((currentScores) => ({
             ...currentScores,
             [studentId]: value,
         }));
+
+        if (value !== "") {
+            setMissingByStudentId((currentMissing) => ({
+                ...currentMissing,
+                [studentId]: false,
+            }));
+        }
+    };
+
+    const handleMissingClick = async (studentScoreRecord) => {
+        const updatedStudentAssessment = await onMarkMissing(studentScoreRecord);
+
+        if (!updatedStudentAssessment) {
+            return;
+        }
+
+        setMissingByStudentId((currentMissing) => ({
+            ...currentMissing,
+            [studentScoreRecord.student_id]: Boolean(
+                updatedStudentAssessment.is_missing,
+            ),
+        }));
+        setStudentAssessmentIdsByStudentId((currentIds) => ({
+            ...currentIds,
+            [studentScoreRecord.student_id]:
+                updatedStudentAssessment.id ??
+                updatedStudentAssessment.student_assessment_id,
+        }));
+
+        if (updatedStudentAssessment.is_missing) {
+            setScoresByStudentId((currentScores) => ({
+                ...currentScores,
+                [studentScoreRecord.student_id]: "",
+            }));
+        }
     };
 
     return (
@@ -97,7 +178,13 @@ export const StudentAssessmentScoresFields = ({
                                 enrollment_id:
                                     student.enrollment_id ??
                                     student.enrollment?.id,
-                                student_assessment_id: existingScore?.id,
+                                student_assessment_id:
+                                    studentAssessmentIdsByStudentId[
+                                        student.id
+                                    ] ?? existingScore?.id,
+                                is_missing: Boolean(
+                                    missingByStudentId[student.id],
+                                ),
                                 score:
                                     scoresByStudentId[student.id] === ""
                                         ? null
@@ -135,13 +222,15 @@ export const StudentAssessmentScoresFields = ({
                                                     student.id
                                                 }
                                                 onClick={() =>
-                                                    onMarkMissing(studentScoreRecord)
+                                                    handleMissingClick(studentScoreRecord)
                                                 }
                                             >
                                                 {markingMissingStudentId ===
                                                 student.id
                                                     ? "Marking..."
-                                                    : "Mark as Missing"}
+                                                    : studentScoreRecord.is_missing
+                                                        ? "Unmark as Missing"
+                                                        : "Mark as Missing"}
                                             </Button>
                                         </TableCell>
                                     )}

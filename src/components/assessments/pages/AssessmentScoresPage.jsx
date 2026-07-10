@@ -1,7 +1,11 @@
 import { useEffect, useState } from "react"
 import { useNavigate, useParams } from "react-router-dom"
 import { Alert, AssessmentScoresForm, FormPage, Text } from "@/components"
-import { getAssessmentById, getCourseDashboard } from "@/services"
+import {
+    getAssessmentById,
+    getAssessmentByIdForStudentAssessments,
+    getCourseDashboard,
+} from "@/services"
 
 export const AssessmentScoresPage = () => {
     const navigate = useNavigate()
@@ -18,14 +22,24 @@ export const AssessmentScoresPage = () => {
             setLoading(true)
 
             try {
-                const [assessmentData, courseDashboardData] = await Promise.all([
+                const [
+                    assessmentData,
+                    courseDashboardData,
+                    studentAssessmentsData,
+                ] = await Promise.all([
                     getAssessmentById(assessmentId),
                     getCourseDashboard(courseId),
+                    getAssessmentByIdForStudentAssessments(assessmentId),
                 ])
+                const studentsWithEnrollmentIds =
+                    courseDashboardData.students ?? []
 
                 if (!ignore) {
-                    setAssessment(assessmentData)
-                    setStudents(courseDashboardData.students ?? [])
+                    setAssessment({
+                        ...assessmentData,
+                        student_assessments: studentAssessmentsData,
+                    })
+                    setStudents(studentsWithEnrollmentIds)
                     setError(null)
                 }
             } catch (err) {
