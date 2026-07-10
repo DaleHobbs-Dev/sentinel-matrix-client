@@ -6,12 +6,9 @@ import {
     TableHead,
     TableHeader,
     TableRow,
-    Text,
+    Text,formatRiskScore,
+    riskStudentHasCourseDetailsRoute
 } from "@/components"
-import {
-    formatRiskScore,
-    riskStudentHasCourseDetailsRoute,
-} from "../utils/dashboardFormatters"
 
 const getRiskStudentKey = (riskStudent, index) =>
     riskStudent.enrollment_id ??
