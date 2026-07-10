@@ -18,6 +18,13 @@ import {
     getEditableAssessmentWeightRows,
 } from "../utils/assessmentWeights";
 
+const riskScoreBreakdown = [
+    ["Risk score for Attendance", "30%"],
+    ["Risk score for Homework", "40%"],
+    ["Risk score for Missing Assignments", "20%"],
+    ["Prior Academic Standing Modifier", "10%"],
+];
+
 const CourseAssessmentWeightsForm = ({
     courseAssessmentTypes,
     onClose,
@@ -47,7 +54,7 @@ const CourseAssessmentWeightsForm = ({
 
         if (!assessmentWeightTotalsAreValid(totals)) {
             setError(
-                "Assessment weights and risk score weights must each add up to 100.",
+                "Assessment weights must add up to 100.",
             );
             return;
         }
@@ -97,6 +104,27 @@ const CourseAssessmentWeightsForm = ({
                 </div>
 
                 <AssessmentWeightTotalsSummary totals={totals} />
+
+                <div className="mt-4 rounded-lg border border-gray-200 p-4 text-sm dark:border-gray-700">
+                    <Text as="h3" className="mb-3 font-semibold">
+                        Fixed Risk Score Engine
+                    </Text>
+                    <div className="space-y-2">
+                        {riskScoreBreakdown.map(([label, value]) => (
+                            <div
+                                key={label}
+                                className="flex items-center justify-between gap-4"
+                            >
+                                <span>{label}</span>
+                                <span className="font-medium">{value}</span>
+                            </div>
+                        ))}
+                    </div>
+                    <Text variant="muted" className="mt-3 text-xs">
+                        Prior standing converts Excellent to 100, Great to 85,
+                        Average to 70, and Poor to 50.
+                    </Text>
+                </div>
             </ModalBody>
 
             <ModalFooter>

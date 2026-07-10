@@ -1,8 +1,4 @@
-import { Text } from "@/components/ui/Text"
-import {
-    formatAcademicStanding,
-    getStudentFullName,
-} from "../utils/studentFormatters"
+import { Text, formatAcademicStanding, getStudentFullName } from "@/components"
 
 const getInitials = (student = {}) =>
     [student.first_name, student.last_name]
@@ -18,7 +14,7 @@ const DetailItem = ({ label, value }) => (
     </div>
 )
 
-export const StudentDetailsCard = ({ student, metrics }) => (
+export const StudentDetailsCard = ({ student }) => (
     <div className="rounded-lg border border-gray-200 bg-white p-6 shadow-sm dark:border-gray-700 dark:bg-gray-900">
         <div className="flex flex-col gap-5 sm:flex-row sm:items-center">
             <div className="flex h-24 w-24 shrink-0 items-center justify-center rounded-lg bg-surface-muted text-3xl font-semibold text-text-muted">
@@ -29,47 +25,49 @@ export const StudentDetailsCard = ({ student, metrics }) => (
                     {getStudentFullName(student)}
                 </Text>
                 {student.student_id && (
-                    <Text variant="muted">{student.student_id}</Text>
+                    <Text variant="muted">Student ID: {student.student_id}</Text>
                 )}
                 {student.email && <Text variant="muted">{student.email}</Text>}
             </div>
         </div>
-
+                <div className="mt-6">
+                    <Text as="h2" variant="primary">Overall Academic Details</Text>
+                </div>
         <div className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
             <DetailItem
                 label="Prior Standing"
                 value={formatAcademicStanding(
-                    metrics?.prior_academic_standing ??
+                    student?.prior_academic_standing ??
                     student.prior_academic_standing,
                 )}
             />
-            <DetailItem label="Enrollment Date" value={metrics.enrolled_at?.split("T")[0]} />
-            {metrics?.grade_average !== undefined && (
+            <DetailItem label="Enrollment Date" value={student.enrollment_date?.split("T")[0]} />
+            {student?.grade_average !== undefined && (
                 <DetailItem
                     label="Grade Average"
-                    value={`${Number(metrics.grade_average).toFixed(1)}%`}
+                    value={`${Number(student.grade_average).toFixed(1)}%`}
                 />
             )}
-            {metrics?.attendance_rate !== undefined && (
+            {student?.attendance_rate !== undefined && (
                 <DetailItem
                     label="Attendance Rate"
-                    value={`${Number(metrics.attendance_rate).toFixed(1)}%`}
+                    value={`${Number(student.attendance_rate).toFixed(1)}%`}
                 />
             )}
-            {metrics?.missing_assignment_rate !== undefined && (
+            {student?.missing_assignment_rate !== undefined && (
                 <DetailItem
                     label="Missing Assignment Rate"
-                    value={`${Number(metrics.missing_assignment_rate).toFixed(1)}%`}
+                    value={`${Number(student.missing_assignment_rate).toFixed(1)}%`}
                 />
             )}
-            {metrics?.risk_score !== undefined && (
+            {student?.risk_score !== undefined && (
                 <DetailItem
                     label="Risk Score"
-                    value={Number(metrics.risk_score).toFixed(1)}
+                    value={Number(student.risk_score).toFixed(1)}
                 />
             )}
-            {metrics?.risk_band && (
-                <DetailItem label="Risk Status" value={metrics.risk_band} />
+            {student?.risk_band && (
+                <DetailItem label="Risk Status" value={student.risk_band} />
             )}
         </div>
     </div>

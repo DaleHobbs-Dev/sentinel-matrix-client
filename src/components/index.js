@@ -94,6 +94,7 @@ export { StudentSearchBar } from "./students/components/StudentSearchBar"
 export { StudentRiskBadge } from "./students/components/StudentRiskBadge"
 export { StudentDirectoryHeader } from "./students/components/StudentDirectoryHeader"
 export { StudentDetailsCard } from "./students/components/StudentDetailsCard"
+export { StudentCurrentCourses } from "./students/components/StudentCurrentCourses"
 
 // Student Pages
 export { StudentDirectory } from "./students/pages/StudentDirectory"

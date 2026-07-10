@@ -71,9 +71,6 @@ export const AssessmentsList = ({
                         <TableCell>{formatDate(assessment.due_date)}</TableCell>
                         <TableCell>
                             <div>{formatWholeNumber(assessment.weight)}% grade</div>
-                            <div className="text-xs text-gray-500 dark:text-gray-400">
-                                {formatWholeNumber(assessment.risk_score_weight)}% risk
-                            </div>
                         </TableCell>
                         <TableCell className="text-right">
                             <ButtonGroup align="end">

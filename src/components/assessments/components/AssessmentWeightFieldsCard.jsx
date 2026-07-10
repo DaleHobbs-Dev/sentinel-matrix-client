@@ -20,22 +20,5 @@ export const AssessmentWeightFieldsCard = ({ assessmentType, onChange }) => (
                 required
             />
         </FormField>
-        <FormField label="Risk Score Weight">
-            <Input
-                type="number"
-                min="0"
-                max="100"
-                step="1"
-                value={assessmentType.risk_score_weight}
-                onChange={(event) =>
-                    onChange(
-                        assessmentType.id,
-                        "risk_score_weight",
-                        event.target.value,
-                    )
-                }
-                required
-            />
-        </FormField>
     </div>
 );
