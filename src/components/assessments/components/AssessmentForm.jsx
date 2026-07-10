@@ -1,43 +1,10 @@
 import { useState } from "react"
 import { Alert, Button, FormField, Input, Select } from "@/components"
-
-const emptyAssessment = {
-    title: "",
-    max_score: "",
-    due_date: "",
-    assessment_type_id: "",
-}
-
-const toDateTimeInputValue = (value) => {
-    if (!value) {
-        return ""
-    }
-
-    const date = new Date(value)
-
-    if (Number.isNaN(date.getTime())) {
-        return value
-    }
-
-    return new Date(date.getTime() - date.getTimezoneOffset() * 60000).toISOString().slice(0, 16)
-}
-
-const toApiDateValue = (value) => {
-    if (!value) {
-        return null
-    }
-
-    const date = new Date(value)
-
-    return Number.isNaN(date.getTime()) ? value : date.toISOString()
-}
-
-const normalizeInitialValues = (initialValues) => ({
-    ...emptyAssessment,
-    ...initialValues,
-    assessment_type_id: initialValues.assessment_type_id ?? "",
-    due_date: toDateTimeInputValue(initialValues.due_date),
-})
+import {
+    emptyAssessment,
+    normalizeInitialValues,
+    toApiDateValue,
+} from "../utils/assessmentFormUtils"
 
 export const AssessmentForm = ({
     initialValues = emptyAssessment,

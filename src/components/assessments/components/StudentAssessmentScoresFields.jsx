@@ -11,36 +11,11 @@ import {
     Text,
     getStudentFullName,
 } from "@/components";
-
-const getExistingScoreRecords = (assessment) =>
-    assessment?.student_scores ||
-    assessment?.student_assessments ||
-    assessment?.scores ||
-    [];
-
-const findExistingScore = (student, scoreRecords) => {
-    return scoreRecords.find((scoreRecord) => {
-        const recordStudentId =
-            scoreRecord.student_id ??
-            scoreRecord.student?.id ??
-            scoreRecord.enrollment?.student?.id;
-        const recordEnrollmentId =
-            scoreRecord.enrollment_id ?? scoreRecord.enrollment?.id;
-
-        return (
-            recordStudentId === student.id ||
-            recordEnrollmentId === student.enrollment_id
-        );
-    });
-};
-
-const formatMaximumScore = (value) => {
-    if (value === null || value === undefined || value === "") {
-        return "N/A";
-    }
-
-    return Number(value).toLocaleString("en-US", { maximumFractionDigits: 2 });
-};
+import {
+    findExistingScore,
+    formatMaximumScore,
+    getAssessmentScoreRecords,
+} from "../utils/assessmentScoreUtils";
 
 export const StudentAssessmentScoresFields = ({
     assessment,
@@ -51,7 +26,7 @@ export const StudentAssessmentScoresFields = ({
     markingMissingStudentId,
 }) => {
     const [scoresByStudentId, setScoresByStudentId] = useState(() => {
-        const scoreRecords = getExistingScoreRecords(assessment);
+        const scoreRecords = getAssessmentScoreRecords(assessment);
 
         return students.reduce((scoresByStudentId, student) => {
             const existingScore = findExistingScore(student, scoreRecords);
@@ -62,7 +37,7 @@ export const StudentAssessmentScoresFields = ({
     });
 
     useEffect(() => {
-        const existingScoreRecords = getExistingScoreRecords(assessment);
+        const existingScoreRecords = getAssessmentScoreRecords(assessment);
         const scoreRecords = students.map((student) => ({
             student_id: student.id,
             enrollment_id: student.enrollment_id ?? student.enrollment?.id,
@@ -115,7 +90,7 @@ export const StudentAssessmentScoresFields = ({
                         {students.map((student) => {
                             const existingScore = findExistingScore(
                                 student,
-                                getExistingScoreRecords(assessment),
+                                getAssessmentScoreRecords(assessment),
                             );
                             const studentScoreRecord = {
                                 student_id: student.id,

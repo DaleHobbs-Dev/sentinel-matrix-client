@@ -130,6 +130,20 @@ export { AssessmentScoresPage } from "./assessments/pages/AssessmentScoresPage"
 
 // Assessment Utilities
 export {
+  emptyAssessment,
+  normalizeInitialValues,
+  toApiDateValue,
+  toDateTimeInputValue,
+} from "./assessments/utils/assessmentFormUtils"
+export {
+  findAssessmentScoreRecord,
+  findExistingScore,
+  formatMaximumScore,
+  getAssessmentScoreRecords,
+  isPastDue,
+  markBlankPastDueScoresMissing,
+} from "./assessments/utils/assessmentScoreUtils"
+export {
   assessmentWeightTotalIsValid,
   assessmentWeightTotalsAreValid,
   getAssessmentWeightPayload,

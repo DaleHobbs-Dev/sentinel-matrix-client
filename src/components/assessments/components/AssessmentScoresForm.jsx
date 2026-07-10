@@ -1,82 +1,10 @@
 import { useState } from "react"
-import { Alert, Button, StudentAssessmentScoresFields } from "@/components"
+import { Alert, Button, StudentAssessmentScoresFields, markBlankPastDueScoresMissing } from "@/components"
 import {
     createStudentAssessment,
     updateAssessment,
     updateStudentAssessment,
 } from "@/services"
-
-const isPastDue = (date) => {
-    if (!date) {
-        return false
-    }
-
-    const dueDate = new Date(date)
-
-    return !Number.isNaN(dueDate.getTime()) && dueDate < new Date()
-}
-
-const getAssessmentScoreRecords = (assessment) =>
-    assessment?.student_scores ||
-    assessment?.student_assessments ||
-    assessment?.scores ||
-    []
-
-const findAssessmentScoreRecord = (scoreRecord, assessmentScoreRecords) =>
-    assessmentScoreRecords.find((assessmentScoreRecord) => {
-        const recordStudentId =
-            assessmentScoreRecord.student_id ??
-            assessmentScoreRecord.student?.id ??
-            assessmentScoreRecord.enrollment?.student?.id
-        const recordEnrollmentId =
-            assessmentScoreRecord.enrollment_id ??
-            assessmentScoreRecord.enrollment?.id
-
-        return (
-            recordStudentId === scoreRecord.student_id ||
-            recordEnrollmentId === scoreRecord.enrollment_id
-        )
-    })
-
-const markBlankPastDueScoresMissing = async ({ assessment, scoreRecords }) => {
-    if (!isPastDue(assessment.due_date)) {
-        return
-    }
-
-    const assessmentScoreRecords = getAssessmentScoreRecords(assessment)
-    const missingScoreRecords = scoreRecords.filter(
-        (scoreRecord) =>
-            scoreRecord.enrollment_id &&
-            (scoreRecord.score === null ||
-                scoreRecord.score === undefined ||
-                scoreRecord.score === ""),
-    )
-
-    await Promise.all(
-        missingScoreRecords.map((scoreRecord) => {
-            const assessmentScoreRecord = findAssessmentScoreRecord(
-                scoreRecord,
-                assessmentScoreRecords,
-            )
-            const studentAssessment = {
-                enrollment: scoreRecord.enrollment_id,
-                assessment: assessment.id,
-                score: null,
-                is_missing: true,
-                completed_date: null,
-            }
-            const studentAssessmentId =
-                assessmentScoreRecord?.id || scoreRecord.student_assessment_id
-
-            return studentAssessmentId
-                ? updateStudentAssessment(
-                    studentAssessmentId,
-                    studentAssessment,
-                )
-                : createStudentAssessment(studentAssessment)
-        }),
-    )
-}
 
 export const AssessmentScoresForm = ({
     assessment,
@@ -89,6 +17,7 @@ export const AssessmentScoresForm = ({
     const [submitting, setSubmitting] = useState(false)
     const [error, setError] = useState(null)
 
+    // Function to save a missing student assessment
     const saveMissingStudentAssessment = async (scoreRecord) => {
         const studentAssessment = {
             enrollment: scoreRecord.enrollment_id,
