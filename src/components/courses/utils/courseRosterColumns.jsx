@@ -20,6 +20,12 @@ const formatNumber = (value) => {
 
 const getRosterStudent = (enrollment) => enrollment.student ?? enrollment
 
+const getRosterValue = (enrollment, key) => {
+    const student = getRosterStudent(enrollment)
+
+    return enrollment[key] ?? student[key]
+}
+
 export const getCourseRosterColumns = ({ onRemove } = {}) => [
     {
         key: "name",
@@ -57,27 +63,29 @@ export const getCourseRosterColumns = ({ onRemove } = {}) => [
     {
         key: "grade_average",
         header: "Grade Average",
-        render: (enrollment) => formatPercent(enrollment.grade_average),
+        render: (enrollment) => formatPercent(getRosterValue(enrollment, "grade_average")),
     },
     {
         key: "attendance_rate",
         header: "Attendance Rate",
-        render: (enrollment) => formatPercent(enrollment.attendance_rate),
+        render: (enrollment) => formatPercent(getRosterValue(enrollment, "attendance_rate")),
     },
     {
-        key: "missing_assignment_rate",
+        key: "missing_assignment_count",
         header: "Missing Assignments",
-        render: (enrollment) => formatPercent(enrollment.missing_assignment_rate),
+        render: (enrollment) => getRosterValue(enrollment, "missing_assignment_count") ?? "N/A",
     },
     {
         key: "risk_score",
         header: "Risk Score",
-        render: (enrollment) => formatNumber(enrollment.risk_score),
+        render: (enrollment) => formatNumber(getRosterValue(enrollment, "risk_score")),
     },
     {
         key: "risk_band",
         header: "Risk Status",
-        render: (enrollment) => <StudentRiskBadge riskBand={enrollment.risk_band} />,
+        render: (enrollment) => (
+            <StudentRiskBadge riskBand={getRosterValue(enrollment, "risk_band")} />
+        ),
     },
 ]
 
